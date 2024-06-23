@@ -1,6 +1,6 @@
 
 var express = require('express');
-var mongoclient=require("mongodb").MongoClient;
+var mongoclient =require("mongodb").MongoClient;
 var core = require("cores");
 var multer = require("multer");
 
@@ -9,5 +9,5 @@ var multer = require("multer");
 
 app.use(core());
 
-var Connection_string ="mongodb+srv://sandaluthushan20:<password>@ransom.wxp1ukq.mongodb.net/?retryWrites=true&w=majority&appName=Ransom"
+var Connection_string ="mongodb+srv://sandaluthushan20:7XsATlPYwIkWMSfY@ransom.wxp1ukq.mongodb.net/?retryWrites=true&w=majority&appName=Ransom"
 
