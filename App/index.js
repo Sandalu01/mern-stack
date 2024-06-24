@@ -1,27 +1,36 @@
 
-var express = require('express');
-var mongoclient =require("mongodb").MongoClient;
-var core = require("cores");
-var multer = require("multer");
+const express = require('express');
+const { MongoClient, ObjectId } = require('mongodb');
+const bodyParser = require('body-parser');
+const cors = require('cors') // Correct spelling
 
-//get express instance
- var app = express();
+const app = express();
+const port = 5038;
 
-app.use(core());
+const CONNECTION_STRING = "mongodb+srv://sandaluthushan20:kZRjSaIgsIGT3LjJ@cluster0.9qwykfs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DATABASE_NAME = 'APIDB';
+let database;
 
-var Connection_string ="mongodb+srv://sandaluthushan20:Mk67DS0NNLabb8ZI@cluster0.9qwykfs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-var DATABASENAME ="APIDB";
-var database;
+app.use(cors());
+app.use(bodyParser.json());
 
 
-app.listen(5038,()=>{
-    mongoclient.connect(Connection_string,(error,client)=>{
-        database=client.db(DATABASENAME);
-        console.log("connected to database");
-    })
-});
 
+MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
+    if (error) {
+      console.error('Error connecting to MongoDB:', error);
+      return;
+    }
+    database = client.db(DATABASE_NAME);
+    console.log('Connected to database');
+  
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  });
+
+
+  
 
 // Get all items
 app.get('/items', async (req, res) => {
