@@ -92,6 +92,6 @@ app.delete('/items/:id', async (req, res) => {
         res.status(404).json({ message: 'Item not found' });
       }
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred while deleting the item' });
+      res.status(500).json({ error: 'An error occurred while deleting the items' });
     }
   });
